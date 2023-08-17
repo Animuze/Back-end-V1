@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Songs</h1>
+
+<%= form_tag songs_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<div id="songs">
+  <div class="songs-main-div">
+    <% @songs.each do |song| %>
+      <div class="song-div">
+       <div data-controller="playlist"  class="song-play" data-id="<%= song.id %>" style="background-image: url(<%= rails_blob_url(song.image) %>);" >
+          <i class="fa fa-play" id="song-play-button"></i>
+            <i class="fa fa-pause" id="song-pause-button"></i>
+        </div>
+        <p>
+          <strong>Name:</strong>
+          <%= song.name %>
+        </p>
+        <p>
+          <strong>Duration:</strong>
+          <%= song.duration %>
+        </p>
+        <div class="actions-div">
+          <%= button_to "Show this song", song, method: :get %>
+          <%= button_to "Destroy this song", song, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
+          <%= button_to "Add to playlist", upload_song_playlist_path(song), method: :get %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= will_paginate @songs %>
+
+<%= link_to "New song", new_song_path %>

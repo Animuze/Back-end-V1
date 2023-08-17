@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Playlists</h1>
+<%= form_tag playlists_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<div id="playlists">
+  <% @playlists.each do |playlist| %>
+    <p>
+      <strong>Title:</strong>
+      <%= playlist.title %>
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      <%= playlist.status %>
+    </p>
+    <div class="actions-div">
+      <%= button_to "Show this playlist", playlist, method: :get %>
+      <%= button_to "Edit this playlist", edit_playlist_path(playlist), method: :get %>
+    </div>
+  <% end %>
+</div>
+<%= will_paginate @playlists %>
+
+<%= link_to "New Playlist", new_playlist_path %>

@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @song %>
+
+<div class="actions-div">
+  <%= button_to "Edit this song", edit_song_path(@song), method: :get %>
+  <%= button_to "Destroy this song", @song, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
+  <%= button_to "Back to songs", songs_path, method: :get %>
+</div>

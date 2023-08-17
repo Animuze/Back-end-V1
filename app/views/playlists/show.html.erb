@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @playlist %>
+
+<div class="actions-div">
+  <%= button_to "Edit this playlist", edit_playlist_path(@playlist), method: :get %>
+  <%= button_to "Destroy this playlist", @playlist, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
+  <%= button_to "Back to playlists", playlists_path, method: :get %>
+</div>

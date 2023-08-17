@@ -1,0 +1,10 @@
+<h1>Editing Playlist</h1>
+
+<%= render "form", playlist: @playlist %>
+
+<br>
+
+<div class="actions-div">
+  <%= button_to "Show this playlist", @playlist, method: :get %>
+  <%= button_to "Back to playlists", playlists_path, method: :get %>
+</div>

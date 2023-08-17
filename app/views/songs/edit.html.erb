@@ -1,0 +1,10 @@
+<h1>Editing song</h1>
+
+<%= render "form", song: @song %>
+
+<br>
+
+<div class="actions-div">
+  <%= button_to "Show this song", @song, method: :get %>
+  <%= button_to "Back to songs", songs_path, method: :get %>
+</div>

@@ -1,0 +1,58 @@
+<%= form_with(model: song) do |form| %>
+  <% if song.errors.any? %>
+    <div class="error">
+      <h2><%= pluralize(song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+        <% song.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div data-controller="song">
+    <%= form.label :music, style: "display: block" %>
+    <%= form.file_field :music, id: "music",  accept: ".mp3" %>
+  </div>
+
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image, id: "image",  accept: "image/*" %>
+  </div>
+
+  <div id="cover-main-div">
+    <div id="cover" style="background-image: url(<%= rails_blob_url(song.image) if song.image.attached? %>);"></div>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name, id: "name" %>
+  </div>
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, id: "title" %>
+  </div>
+
+  <div>
+    <%= form.label :artist, style: "display: block"%>
+    <%= form.text_area :artist, id: "artist" %>
+  </div>
+
+  <div>
+    <%= form.label :album, style: "display: block"%>
+    <%= form.text_field :album, id: "album" %>
+  </div>
+  <div>
+    <%= form.label :genre, style: "display: block"%>
+    <%= form.text_field :genre, id: "genre" %>
+  </div>
+  <div>
+    <%= form.label :year, style: "display: block"%>
+    <%= form.text_field :year, id: "year" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<div id="<%= dom_id song %>">
+
+  <div class="song-div">
+    <video controls=""  name="media" poster="<%= rails_blob_url(song.image) if song.image.attached? %>" >
+      <source src="<%= rails_blob_url(song.music) %>">
+    </video>
+  </div>
+  <p>
+    <strong>Name:</strong>
+    <%= song.name %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= song.title %>
+  </p>
+
+  <p>
+    <strong>Artist:</strong>
+    <%= song.artist %>
+  </p>
+
+  <p>
+    <strong>Album:</strong>
+    <%= song.album %>
+  </p>
+
+  <p>
+    <strong>Genre:</strong>
+    <%= song.genre %>
+  </p>
+
+  <p>
+    <strong>Year:</strong>
+    <%= song.year %>
+  </p>
+
+  <p>
+    <strong>Duration:</strong>
+    <%= song.duration %>
+  </p>
+
+</div>

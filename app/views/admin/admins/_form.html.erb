@@ -1,0 +1,23 @@
+<%= form_with(model: [:admin, admin_user], data: { turbo: false }) do |f| %>
+  <% if admin_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_user.errors.count, "error") %> prohibited this admin from being saved:</h2>
+      <ul>
+        <% admin_user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, autocomplete: "email",  required: true, placeholder: 'Email', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :role_id, "Role" %>
+    <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
+  </div>
+
+  <%= f.submit 'Submit', class: "btn btn-success submit" %>
+<% end %>

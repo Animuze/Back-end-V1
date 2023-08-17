@@ -1,0 +1,27 @@
+<div id="<%= dom_id playlist %>">
+  <p>
+    <strong>Title:</strong>
+    <%= playlist.title %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= playlist.status %>
+  </p>
+  <%= button_to 'Activate', update_status_playlist_path(playlist), method: :put, class: "activate" if playlist.deactivate? %>
+  <div class="songs-main-div">
+    <% playlist.playlist_songs.each do |playlist_song| %>
+      <div class="song-div">
+        <%= image_tag rails_blob_url(playlist_song.song.image) if playlist_song.song.image.attached? %>
+        <div data-controller="song">
+          <button class="song-playlist" data-id="<%= playlist.id %>">Click</button>
+        </div>
+        <p>
+          <strong>Name:</strong>
+          <%= playlist_song.song.name %>
+        </p>
+        <%= button_to "Remove song", remove_song_playlist_path(playlist_song), method: :delete %>
+      </div>
+    <% end %>
+  </div>
+</div>

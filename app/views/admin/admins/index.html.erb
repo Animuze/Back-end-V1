@@ -1,0 +1,31 @@
+<div class="table-responsive">
+  <table class=" table table-bordered table-hover">
+    <thead>
+      <tr class="color-red">
+        <th>Email</th>
+        <th>Roles</th>
+        <th class="text-center postion_sticky">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admin_users.each do |admin| %>
+        <tr>
+          <td><%= admin.email %></td>
+          <td><%= admin.roles.pluck(:name) %></td>
+          <td class="text-center postion_sticky admin-postion ">
+            <%= link_to edit_admin_admin_path(admin), class: 'btn btn-warning btn-xs transaction_edit', 'data-toggle': 'tooltip', 'data-placement':'top', title: 'Edit user' do %>
+              edit
+            <% end %>
+            <%= link_to admin_admin_path(admin), data: { turbo_method: :delete }, class: 'btn btn-danger btn-xs', 'data-toggle': 'tooltip', 'data-placement':'top', title: 'Delete user' do %>
+              Destroy
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to 'new users', new_admin_admin_path %>
+    <%= link_to 'back', root_path %>
+  </div>
+</div>

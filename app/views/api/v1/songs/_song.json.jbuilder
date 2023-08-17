@@ -1,0 +1,13 @@
+json.id         song.id
+json.name       song.name
+json.title      song.title
+json.artist     song.artist
+json.genre      song.genre
+json.album      song.album
+json.year       song.year
+json.duration   song.duration
+json.image      rails_blob_url(song.image)
+json.music      rails_blob_url(song.music)
+json.likes      song.cached_votes_up
+json.dislike    song.cached_votes_down
+json.created_at song.created_at
